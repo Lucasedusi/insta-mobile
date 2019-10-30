@@ -73,23 +73,17 @@ export default class Feed extends Component {
     return (
       <View style={styles.container}>
 
-      <ScrollView style={styles.scrollArea} showsHorizontalScrollIndicator={false} horizontal={true}>
-        <Image style={styles.scrollStories} source={nat} />
-        <Image style={styles.scrollStories} source={nat7} />
-        <Image style={styles.scrollStories} source={nat8} />
-        <Image style={styles.scrollStories} source={nat9} />
-        <Image style={styles.scrollStories} source={nat10} />
-        <Image style={styles.scrollStories} source={nat11} />
-        <Image style={styles.scrollStories} source={campus} />
-        <Image style={styles.scrollStories} source={thiago} />
-        <Image style={styles.scrollStories} source={facebook} />
-        <Image style={styles.scrollStories} source={campus} />
-        <Image style={styles.scrollStories} source={thiago} />
-        <Image style={styles.scrollStories} source={facebook} />
-        <Image style={styles.scrollStories} source={campus} />
-        <Image style={styles.scrollStories} source={thiago} />
-        <Image style={styles.scrollStories} source={facebook} />
-      </ScrollView>
+      <FlatList 
+        data={this.state.feed}
+        keyExtractor={post => post._id}
+        style={styles.scrollArea}
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}
+        renderItem={({ item }) => (
+          <Image style={styles.scrollStories} source={{ uri: `http://localhost:3333/files/${item.image}` }} />
+        )}
+      />
+
 
         <FlatList
           data={this.state.feed}
