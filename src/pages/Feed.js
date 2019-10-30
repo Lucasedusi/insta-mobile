@@ -6,22 +6,13 @@ import React, {Component} from 'react';
 import io from 'socket.io-client';
 import api from '../services/api';
 
-import {View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 
-import nat from '../assets/thumbs/6.jpg';
-import nat7 from '../assets/thumbs/7.jpg';
-import nat8 from '../assets/thumbs/8.jpg';
-import nat9 from '../assets/thumbs/9.jpg';
-import nat10 from '../assets/thumbs/10.jpg';
-import nat11 from '../assets/thumbs/11.jpg';
 import camera from '../assets/camera.png';
 import more from '../assets/more.png';
 import like from '../assets/like.png';
 import comment from '../assets/comment.png';
 import send from '../assets/send.png';
-import campus from '../assets/thumbs/01.png';
-import facebook from '../assets/thumbs/03.jpg';
-import thiago from '../assets/thumbs/05.jpg';
 
 export default class Feed extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -80,7 +71,12 @@ export default class Feed extends Component {
         showsHorizontalScrollIndicator={false}
         horizontal={true}
         renderItem={({ item }) => (
-          <Image style={styles.scrollStories} source={{ uri: `http://localhost:3333/files/${item.image}` }} />
+          <View>
+            <Image style={styles.scrollStories} source={{ uri: `http://localhost:3333/files/${item.image}` }} />
+              <View>
+                <Text style={{ fontSize: 8, marginRight: 18 }}>{item.author}</Text>
+              </View>
+          </View>
         )}
       />
 
@@ -150,8 +146,8 @@ const styles = StyleSheet.create({
     width: 55,
     height: 55,
     borderRadius: 30,
-    marginRight: 10,
     marginBottom: 5,
+    marginRight: 20,
   },
 
   feedItemHeader: {
